@@ -7,7 +7,7 @@ import user_controller, {authenticateMiddleware} from "./controllers/user_contro
 const app = express();
 
 const corsOptions = {
-    origin: "http://localhost:8000"
+    origin: "http://localhost:3000"
 };
 
 app.use(cors(corsOptions));
@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
     res.json({message: "Welcome to IMDB application"})
 });
 
-app.use('/api/movies', authenticateMiddleware, movie_controller);
+app.use('/api/movies', movie_controller);
 app.use('/api/users', user_controller);
 
 app.listen(8000, () => {
