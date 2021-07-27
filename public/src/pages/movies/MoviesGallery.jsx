@@ -1,6 +1,6 @@
 import React, {useState, useEffect, useContext} from "react";
 import "../../styles/MoviesGallery.css"
-import axios, {api} from "../../api/index";
+import api from "../../api/index";
 import {MovieItem} from "./MovieItem";
 import {Link} from "react-router-dom";
 
@@ -9,9 +9,9 @@ export function MoviesGallery(){
 
     useEffect(() => {
         async function fetchData(){
-            const request = await axios.getAllMovies();
-            setMovies(request.data);
-            return request;
+            const res = await api.getAllMovies();
+            setMovies(res.data);
+            return res;
         }
         fetchData();
     }, [])

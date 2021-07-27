@@ -1,19 +1,27 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 
-export const api = axios.create({
+const client = axios.create({
     baseURL: 'http://localhost:8000/api',
 })
 
-export const login = payload => api.post(`/users/login`, payload)
-export const addMovie = payload => api.post(`/movies`, payload)
-export const getAllMovies = () => api.get(`/movies`)
-export const updateMovieById = (id, payload) => api.put(`/movies/${id}`, payload)
-export const deleteMovieById = id => api.delete(`/movies/${id}`)
-export const getMovieById = id => api.get(`/movies/${id}`)
-export const getMovieReviews = id => api.get(`/movies/${id}/reviews`)
+client.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('token');
+    if (token !== null ) {
+        config.headers.Authorization = "Bearer " + token;
+    }
+    return config;
+});
 
-const apis = {
+export const login = payload => client.post(`/users/login`, payload)
+export const addMovie = payload => client.post(`/movies`, payload)
+export const getAllMovies = () => client.get(`/movies`)
+export const updateMovieById = (id, payload) => client.put(`/movies/${id}`, payload)
+export const deleteMovieById = id => client.delete(`/movies/${id}`)
+export const getMovieById = id => client.get(`/movies/${id}`)
+export const getMovieReviews = id => client.get(`/movies/${id}/reviews`)
+
+const api = {
     login,
     addMovie,
     getAllMovies,
@@ -23,4 +31,4 @@ const apis = {
     getMovieReviews
 }
 
-export default apis;
+export default api;
