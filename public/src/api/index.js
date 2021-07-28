@@ -14,6 +14,7 @@ client.interceptors.request.use(function (config) {
 });
 
 export const login = payload => client.post(`/users/login`, payload)
+export const register = payload => client.post(`users`, payload)
 export const addMovie = payload => client.post(`/movies`, payload)
 export const getAllMovies = () => client.get(`/movies`)
 export const updateMovieById = (id, payload) => client.put(`/movies/${id}`, payload)
@@ -23,6 +24,7 @@ export const getMovieReviews = id => client.get(`/movies/${id}/reviews`)
 
 const api = {
     login,
+    register,
     addMovie,
     getAllMovies,
     updateMovieById,
