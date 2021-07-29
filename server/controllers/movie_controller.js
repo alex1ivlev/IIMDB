@@ -1,5 +1,6 @@
 import express from 'express'
 import * as movieBL from './../models/movieBL.js'
+import {authenticateMiddleware} from "./user_controller.js";
 
 const router = express.Router();
 
@@ -15,27 +16,27 @@ router.route('/:id').get( async function (req, res){
 })
 
 //POST request to add new movie
-router.route('/').post(async function (req, res){
+router.route('/').post(authenticateMiddleware, async function (req, res){
     let newMovie = req.body;
     newMovie.creatorId = req.user.user_id;
     return res.json(await movieBL.addNewMovie(newMovie));
 })
 
 //PUT request to update a movie
-router.route('/:id').put(async function (req, res){
+router.route('/:id').put(authenticateMiddleware, async function (req, res){
     let id = req.params.id;
     let data = req.body;
     return res.json(await movieBL.updateMovie(id, data));
 })
 
 //DELETE request to delete a movie
-router.route('/:id').delete(async function (req, res){
+router.route('/:id').delete(authenticateMiddleware, async function (req, res){
     let id = req.params.id;
     return res.json(await movieBL.deleteMovie(id));
 })
 
 //POST request to post a new review in a movie
-router.route('/:id/reviews/').post(async function (req, res){
+router.route('/:id/reviews/').post(authenticateMiddleware, async function (req, res){
     let review = req.body
     review.userId = req.user.user_id;
     review.movieId = parseInt(req.params.id);

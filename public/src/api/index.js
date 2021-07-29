@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
+import jwtDecode from "jwt-decode";
 
 const client = axios.create({
     baseURL: 'http://localhost:8000/api',
@@ -21,6 +22,7 @@ export const updateMovieById = (id, payload) => client.put(`/movies/${id}`, payl
 export const deleteMovieById = id => client.delete(`/movies/${id}`)
 export const getMovieById = id => client.get(`/movies/${id}`)
 export const getMovieReviews = id => client.get(`/movies/${id}/reviews`)
+export const addReview = (id, payload) => client.post(`movies/${id}/reviews`, payload)
 
 const api = {
     login,
@@ -30,7 +32,22 @@ const api = {
     updateMovieById,
     deleteMovieById,
     getMovieById,
-    getMovieReviews
+    getMovieReviews,
+    addReview
 }
 
+export function isLoggedIn(){
+    if(localStorage.getItem('token') != null){
+        let token = localStorage.getItem('token')
+        const { exp } = jwtDecode(token)
+        // Refresh the token a minute early to avoid latency issues
+        const expirationTime = (exp * 1000) - 60000
+        if (Date.now() >= expirationTime) {
+            localStorage.removeItem('token');
+            return false
+        }
+        return true;
+    }
+    return false;
+}
 export default api;
