@@ -30,14 +30,17 @@ export async function getMovieById(id) {
 //    }
 //  }
 export async function addNewMovie(movie) {
-    movie.tags = {
-        connectOrCreate: movie.tags.map(t => {
-            return {
-                where: t,
-                create: t
-            }
-        })
+    if(movie.tags !== undefined){
+        movie.tags = {
+            connectOrCreate: movie.tags.map(t => {
+                return {
+                    where: t,
+                    create: t
+                }
+            })
+        }
     }
+
     return prisma.movie.create({
         data: movie,
         include: {
