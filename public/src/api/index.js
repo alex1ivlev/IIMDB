@@ -3,7 +3,7 @@ import axios from "axios";
 import jwtDecode from "jwt-decode";
 
 const client = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'https://alex-imdb-server.herokuapp.com/api',
 })
 
 client.interceptors.request.use(function (config) {
