@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Link, Redirect, Route, Switch,} from 'react-router-dom'
+import {BrowserRouter as Router, Link, Redirect, Route, Switch, useHistory,} from 'react-router-dom'
 
 import {MoviesGallery} from "./pages/movies/MoviesGallery"
 import {MovieItem} from "./pages/movies/MovieItem";
@@ -16,8 +16,8 @@ function App(){
         <Router>
             <Route path="/movies" exact component={MoviesGallery} />
             <Route path="/movies/:id" exact component={MovieItem} />
-            <Button variant="contained" color="primary" size="large"> Login <Route path="/login" exact component={LoginForm}/> </Button>
-            <Button variant="contained" color="secondary" size="large"> Sign Up <Route path="/register" exact component={Register}/>  </Button>
+            <Route path="/login" exact component={LoginForm}/>
+            <Route path="/register" exact component={Register}/>
 
         </Router>
     </Container>

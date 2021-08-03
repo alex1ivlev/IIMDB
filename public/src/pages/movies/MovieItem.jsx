@@ -7,7 +7,6 @@ import {Grid, Paper} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 
-
 const useStyles = makeStyles((theme) => ({
         root: {
             flexGrow: 1,
