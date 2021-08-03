@@ -5,12 +5,7 @@ import movie_controller from "./controllers/movie_controller.js";
 import user_controller, {authenticateMiddleware} from "./controllers/user_controller.js";
 
 const app = express();
-
-const corsOptions = {
-    origin: "http://localhost:3000"
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(bodyParser.json());
 
@@ -23,6 +18,6 @@ app.get("/", (req, res) => {
 app.use('/api/movies', movie_controller);
 app.use('/api/users', user_controller);
 
-app.listen(8000, () => {
-    console.log('Serving on port 8000')
+app.listen(process.env.PORT, () => {
+    console.log(`Serving on port ${process.env.PORT}`)
 })
