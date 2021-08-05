@@ -3,7 +3,7 @@ import cors from 'cors';
 import bodyParser from "body-parser";
 import movie_controller from "./controllers/movie_controller.js";
 import user_controller, {authenticateMiddleware} from "./controllers/user_controller.js";
-import actor_controller from "./controllers/actor_controller.js ";
+import actor_controller from "./controllers/actor_controller ";
 
 const app = express();
 app.use(cors());
