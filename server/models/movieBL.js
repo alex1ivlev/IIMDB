@@ -54,7 +54,7 @@ export async function updateMovie(id, movie) {
     if(movie.tags !== undefined) {
         movie.tags = {
             set: [], //first we delete all the previous tags
-            //then we connect pr create our tags
+            //then we connect or create our tags
             connectOrCreate: movie.tags.map(t => {
                 return {
                     where: t,

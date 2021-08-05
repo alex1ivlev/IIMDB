@@ -28,7 +28,7 @@ model Movie {
 model Actor {
   id          Int     @default(autoincrement()) @id
   name        String
-  dateOfBirth Int
+  dateOfBirth String?
   bio         String?
   movies    Movie[]
 }
