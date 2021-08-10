@@ -12,8 +12,7 @@ export function createPassword(rawPass) {
 export async function createNewUser(newUser) {
     return prisma.user.create({
         data: {
-            email: newUser.email,
-            name: newUser.name,
+            ...newUser,
             password: createPassword(newUser.password),
         }
     });

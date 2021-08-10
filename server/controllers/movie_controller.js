@@ -1,6 +1,6 @@
 import express from 'express'
 import * as movieBL from './../models/movieBL.js'
-import {authenticateMiddleware} from "./user_controller.js";
+import {authenticateMiddleware, isAdmin} from "./user_controller.js";
 
 const router = express.Router();
 
@@ -23,14 +23,14 @@ router.route('/').post(authenticateMiddleware, async function (req, res){
 })
 
 //PUT request to update a movie
-router.route('/:id').put(authenticateMiddleware, async function (req, res){
+router.route('/:id').put(authenticateMiddleware, isAdmin, async function (req, res){
     let id = req.params.id;
     let data = req.body;
     return res.json(await movieBL.updateMovie(id, data));
 })
 
 //DELETE request to delete a movie
-router.route('/:id').delete(authenticateMiddleware, async function (req, res){
+router.route('/:id').delete(authenticateMiddleware, isAdmin, async function (req, res){
     let id = req.params.id;
     return res.json(await movieBL.deleteMovie(id));
 })

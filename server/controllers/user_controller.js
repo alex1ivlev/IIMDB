@@ -14,12 +14,16 @@ router.route('/').post(async function (req, res) {
 })
 
 //POST request to login
-router.route('/login').post(async function (req, resp){
+router.route('/login').post(async function (req, resp) {
     let email = req.body.email
     let password = req.body.password
     try {
         let user = await userBL.login(email, password);
-        let token = jwt.sign({user_id: user.id, email: user.email}, process.env.JWT_SECRET, {expiresIn: '1h'});
+        let token = jwt.sign({
+            user_id: user.id,
+            email: user.email,
+            admin: user.admin
+        }, process.env.JWT_SECRET, {expiresIn: '1h'});
 
         return resp.json({token: token});
     } catch (e) {
@@ -48,7 +52,15 @@ export const authenticateMiddleware = (req, resp, next) => {
     })
 }
 
-//GET request to
+//Is ADMIN
+export const isAdmin = (req, resp, next) => {
+    if (!!req.user.admin) {
+        next();
+    } else {
+        resp.status(401)
+        return resp.json("not admin")
+    }
+}
 
 
 export default router;

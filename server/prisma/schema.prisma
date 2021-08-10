@@ -38,8 +38,10 @@ model User {
   email     String   @unique
   name      String?
   password  String
+  admin     Boolean   @default(false)
   movies    Movie[]
   reviews   Review[]
+
 }
 
 model Tag {

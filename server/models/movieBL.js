@@ -30,7 +30,7 @@ export async function getMovieById(id) {
 //    }
 //  }
 export async function addNewMovie(movie) {
-    if(movie.tags !== undefined){
+    if (movie.tags !== undefined) {
         movie.tags = {
             connectOrCreate: movie.tags.map(t => {
                 return {
@@ -51,7 +51,8 @@ export async function addNewMovie(movie) {
 }
 
 export async function updateMovie(id, movie) {
-    if(movie.tags !== undefined) {
+
+    if (movie.tags !== undefined) {
         movie.tags = {
             set: [], //first we delete all the previous tags
             //then we connect or create our tags
@@ -63,6 +64,7 @@ export async function updateMovie(id, movie) {
             })
         }
     }
+
     return prisma.movie.update({
         where: {
             id: parseInt(id)
@@ -73,6 +75,7 @@ export async function updateMovie(id, movie) {
             tags: true
         }
     })
+
 }
 
 export async function deleteMovie(id) {
@@ -89,7 +92,8 @@ export async function addReview(review) {
         }
     )
 }
-export async function getAllReviews(movie_id){
+
+export async function getAllReviews(movie_id) {
     return prisma.review.findMany({
         where: {
             movieId: parseInt(movie_id)
