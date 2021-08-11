@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     },
 });
 
-export function MoviesGallery() {
+export default function MoviesGallery() {
     const [movies, setMovies] = useState([]);
 
     useEffect(() => {

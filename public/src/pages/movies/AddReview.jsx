@@ -17,17 +17,17 @@ export function AddReview(props){
             <form onSubmit={submitHandler}>
                 <h3> Add new review : </h3>
                 <label htmlFor="title">
-                      Review title: <input type="text" name="title" id="title" className="form-label"
+                      Review title: <input type="text" name="title" id="title" className="form-label"  textAlign="left"
                                             onChange={e => setNewReview({...newReview, title: e.target.value})}
                                             value={newReview.title}/><br/>
                 </label>
                 <label htmlFor="comment">
-                    Comment: <input type="text" name="comment" id="comment" className="form-label"
+                    Comment: <input type="text" name="comment" id="comment" className="form-label"  textAlign="left"
                                     onChange={e => setNewReview({...newReview, comment: e.target.value})}
                                     value={newReview.comment}/><br/>
                 </label>
                 <label htmlFor="rank">
-                    Rank: <input type="number" name="rank" id ="rank" className="form-label"
+                    Rank: <input type="number" name="rank" id ="rank" className="form-label"  textAlign="left"
                                  onChange={e => setNewReview({...newReview, rank: parseInt(e.target.value)})}
                                  value={newReview.rank}/> <br/>
                 </label>

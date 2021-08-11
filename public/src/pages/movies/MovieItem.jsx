@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
-import axios from "../../api";
+import axios, {isAdmin} from "../../api";
 import "../../styles/MovieItem.css"
 import {MovieReview} from "./MovieReview";
 import { makeStyles } from '@material-ui/core/styles';
 import {Grid, Paper} from "@material-ui/core";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
+import UpdateMovie from "./UpdateMovie"
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -14,11 +15,11 @@ const useStyles = makeStyles((theme) => ({
         paper: {
             padding: theme.spacing(2),
             margin: 'auto',
-            maxWidth: 500,
+            maxWidth: 800,
         }
     }
 ))
-export function MovieItem(props){
+export default function MovieItem(props){
      const [movie, setMovie] = useState({});
 
     useEffect(() => {
@@ -35,19 +36,19 @@ export function MovieItem(props){
     }, [props.match.params.id]);
 
 
-        const classes = useStyles();
+    const classes = useStyles();
 
     return(
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                <Grid container spacing={2}>
+                <Grid container spacing={5}>
                     <Grid item>
                         <Typography gutterBottom variant="subtitle1">
-                            <h1> Chosen movie: </h1>
+                            <> Chosen movie: </>
                         </Typography>
 
-                        <Typography variant="body2" gutterBottom>
-                            <h2> {movie.title} </h2>
+                        <Typography variant="h5" gutterBottom >
+                            <> {movie.title} </>
                         </Typography>
                                 <Grid item xs>
                                 <p id="info">
@@ -65,6 +66,9 @@ export function MovieItem(props){
                     <MovieReview id={movie.id} />
                 </div>
 
+                <div>
+                {isAdmin() && <UpdateMovie movie={movie}  setMovie={setMovie} />}
+                </div>
         </div>
     )
 }

@@ -30,7 +30,8 @@ model Actor {
   name        String
   dateOfBirth String?
   bio         String?
-  movies    Movie[]
+  picture     String?
+  movies      Movie[]
 }
 
 model User {
