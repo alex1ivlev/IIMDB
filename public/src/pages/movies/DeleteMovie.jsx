@@ -15,22 +15,19 @@ const useStyles = makeStyles((theme) => ({
     }
 ))
 
-export default function DeleteMovie(props){
+export default function DeleteMovie(props) {
     const [movie, setMovie] = useState({});
-    const delete = () =>
+    const deleteMovie = () => {
+        return null
+    }
     useEffect(() => {
-
     }, []);
 
-  const classes = useStyles();
-return (
+    const classes = useStyles();
+    return <div>
+i
+        <h3> ARE YOU SURE YOU WANT TO DELETE THIS MOVIE ? </h3>
 
-<div>
-
-<h3> ARE YOU SURE YOU WANT TO DELETE THIS MOVIE ? </h3>
-
-<button onClick={delete}> Delete </button>
-</div>
-
-)
+        <button onClick={deleteMovie}> Delete</button>
+    </div>
 }
