@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import api from "../../api";
 import {makeStyles} from "@material-ui/core/styles";
 import {Grid, Paper} from "@material-ui/core";
@@ -25,7 +25,7 @@ export default function DeleteMovie(props) {
 
     const classes = useStyles();
     return <div>
-i
+        i
         <h3> ARE YOU SURE YOU WANT TO DELETE THIS MOVIE ? </h3>
 
         <button onClick={deleteMovie}> Delete</button>
