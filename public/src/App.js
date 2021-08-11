@@ -10,7 +10,6 @@ import UpdateMovie from "./pages/movies/UpdateMovie"
 import DeleteMovie from "./pages/movies/DeleteMovie"
 import {Container} from "@material-ui/core";
 import "./styles/App.css"
-import Navbar from "./components/Navbar";
 
 function App() {
 
