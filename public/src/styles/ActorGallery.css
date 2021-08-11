@@ -1,0 +1,15 @@
+body{
+    background-image: none;
+}
+
+img{
+    border: 2px solid #000000;
+    width: 50px;
+    height: 100px;
+    transition: transform 450ms;
+}
+
+img:hover{
+    transform: scale(1.10);
+}
+
