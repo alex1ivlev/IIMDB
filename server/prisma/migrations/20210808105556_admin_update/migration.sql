@@ -5,6 +5,6 @@
 
 */
 -- AlterTable
-UPDATE "User" SET admin=false;
+UPDATE "User" SET admin=false WHERE TRUE;
 ALTER TABLE "User" ALTER COLUMN "admin" SET NOT NULL,
 ALTER COLUMN "admin" SET DEFAULT false;
