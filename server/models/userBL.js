@@ -23,3 +23,4 @@ export function login(email, rawPass) {
         where: {email: email, password: createPassword(rawPass)}
     })
 }
+

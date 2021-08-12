@@ -62,5 +62,4 @@ export const isAdmin = (req, resp, next) => {
     }
 }
 
-
 export default router;
