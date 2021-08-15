@@ -69,3 +69,16 @@
     align-items: center;
 
 }
+
+button{
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    border-radius: 8px;
+    margin-left: 20px;
+}
+ button:hover{
+     background-color: #1a83ff ;
+ }

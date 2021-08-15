@@ -101,7 +101,7 @@ export async function getAllReviews(movie_id) {
     })
 }
 
-export async function addMovieToUser(movie_id, user_id) {
+/*export async function addMovieToUser(user_id, movie) {
     return prisma.user.findOneAndUpdate({
             where: {
                 id: parseInt(user_id)
@@ -109,7 +109,9 @@ export async function addMovieToUser(movie_id, user_id) {
             data:{
                 movies:{
                     connect: {
-                        id: parseInt(movie_id)
+                        id: parseInt(movie.id),
+                        title: movie.title,
+                        description: movie.description
                     }
                 }
             }
@@ -131,4 +133,4 @@ export async function addActorToMovie(movie_id, actor_id) {
             }
         }
     )
-}
+} */

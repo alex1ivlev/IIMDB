@@ -55,26 +55,16 @@ router.route('/:id/reviews').get(async function (req, res) {
 
 //POST request to add movie to user
 
-router.route('/users/:id/movies').post(async function(req,res)
+/*router.route('/users/:id/movies').post(async function(req,res)
 {
+    let userId = parseInt(req.params.id);
     let movie = req.body
-    movie.movieId = req.params.id;
-    movie.userId = req.user.user_id;
     try {
-        return res.json(await movieBL.addMovieToUser(movie))
+        return res.json(await movieBL.addMovieToUser(userId,movie))
     } catch (e) {
         return res.status(500).json({ error: e.toString() });
     }
 })
-
-//POST request to add actor to movie
-
-router.route('/movies/:id/actors/:id').post(async function(req,resp)
-{
-    let movieId = req.params.id;
-    let actorId = req.actors.id;
-    let result = await movieBL.addActorToMovie(movieId, actorId);
-    return resp.json(result);
-})
+*/
 
 export default router;

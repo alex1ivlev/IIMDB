@@ -3,7 +3,12 @@ import React from "react";
 export const NavbarData = [
     {
         title: 'Movie Gallery',
-        path:'/movies',
+        path:'/movies' ,
+        cName: 'nav-text'
+    },
+    {
+        title: 'Actor Gallery',
+        path:'/actors',
         cName: 'nav-text'
     },
     {
