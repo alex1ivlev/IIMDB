@@ -3,7 +3,7 @@ import api from "../../api/index";
 import {MovieItem} from "./MovieItem";
 import {Link} from "react-router-dom";
 import "../../styles/MoviesGallery.css"
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -11,13 +11,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import {Grid} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
         maxWidth: 345,
     },
     media: {
-        height: 500,
+        height: 300,
     },
 });
 
@@ -38,37 +39,42 @@ export default function MoviesGallery() {
     const classes = useStyles();
 
     return (
-        <div>
-            <ul>
+        <div className={classes.root}>
+            <Grid
+                container
+                spacing={2}
+                direction="row"
+                justify-content="flex-start"
+                alignItems="flex-start">
+
                 {movies.map(({title, picture, description, id}) => (
-                    <Card className={classes.root} key={id}>
-                        <CardActionArea>
-                            <CardMedia
-                                className={classes.media}
-                                image={picture}
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {title}
-                                </Typography>
-                                <Typography variant="body2" color="textSecondary" component="p">
-                                    {description}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary" >
-                                <Link to={`movies/${id}`}> See More </Link>
-                            </Button>
-                        </CardActions>
-                    </Card>
+                    <Grid item lg={6} key={id}>
+                        <Card>
+                            <CardActionArea>
+                                <Link to={`movies/${id}`}>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image={picture}
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            {title}
+                                        </Typography>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            {description}
+                                        </Typography>
+                                    </CardContent>
+                                </Link>
+                            </CardActionArea>
+                        </Card>
+                    </Grid>
 
                 ))}
-            </ul>
+
+            </Grid>
         </div>
     );
 }
-
 
 
 /*<li key={id}>
