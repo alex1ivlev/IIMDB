@@ -82,6 +82,7 @@ export default function Register() {
                                     label="Email Address"
                                     name="email"
                                     placeholder="Enter your email"
+                                    pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
                                     onChange={e => setDetails({...details, email: e.target.value})}
                                     value={details.email}
                                 />

@@ -63,6 +63,7 @@ export default function LoginForm(props) {
                             id="email"
                             label="Email Address"
                             name="email"
+                            pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/"
                             placeholder="Enter your email"
                             onChange={e => setDetails({...details, email: e.target.value})}
                             value={details.email}

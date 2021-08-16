@@ -1,9 +1,13 @@
 import React, {useState} from "react";
 import api from "../../api";
+import Typography from "@material-ui/core/Typography";
+import {Box} from "@material-ui/core";
+import Rating from '@material-ui/lab/Rating';
+
 
 export function AddReview(props){
 
-    const [newReview, setNewReview] = useState({title: "", comment: "", rank: null});
+    const [newReview, setNewReview] = useState({title: "", comment: "", rank: 0});
     const submitHandler = e => {
             e.preventDefault();
             api.addReview(props.id, newReview).then(res => {
@@ -27,10 +31,16 @@ export function AddReview(props){
                                     value={newReview.comment}/><br/>
                 </label>
                 <label htmlFor="rank">
-                    Rank: <input type="number" name="rank" id ="rank" className="form-label"  textAlign="left"
-                                 onChange={e => setNewReview({...newReview, rank: parseInt(e.target.value)})}
-                                 value={newReview.rank}/> <br/>
+                    <Box component="fieldset" mb={3} borderColor="transparent">
+                        <Typography component="legend"> Rank: </Typography>
+                        <Rating
+                            name="half-rating" defaultValue={0} precision={0.5}
+                            onChange={e => setNewReview({...newReview, rank: parseInt(e.target.value)})}
+                            value={newReview.rank}
+                        />
+                    </Box>
                 </label>
+
                 <input type="submit" value="SUBMIT REVIEW"/>
             </form>
 

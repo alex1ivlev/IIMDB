@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter as Router, Route, Switch,} from 'react-router-dom'
+import {BrowserRouter as Router, Redirect, Route, Switch,} from 'react-router-dom'
 
 import MoviesGallery from "./pages/movies/MoviesGallery"
 import MovieItem from "./pages/movies/MovieItem";
@@ -21,13 +21,12 @@ function App() {
             </Navbar>
 
                 <Container maxWidth="lg">
-                    <h1 className="App"> WELCOME TO IMBD APPLICATION ! </h1>
+                    <Route path="/" exact component={MoviesGallery}/>
 
                     <Route path="/movies/:id" component={MovieItem}/>
                     <Route path="/actors" component={ActorGallery}/>
                     <Route path="/movies/:id/update" exact component={UpdateMovie}/>
                     <Route path="/movies/:id/delete" exact component={DeleteMovie}/>
-                    <Route path="/movies" exact component={MoviesGallery}/>
                     <Route path="/login" exact component={LoginForm}/>
                     <Route path="/register" exact component={Register}/>
                 </Container>
