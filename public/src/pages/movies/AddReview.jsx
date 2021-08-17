@@ -12,7 +12,7 @@ export function AddReview(props){
             e.preventDefault();
             api.addReview(props.id, newReview).then(res => {
                 console.log(res.data);
-                setNewReview({title: "", comment: "", rank: null});
+                setNewReview({title: "", comment: "", rank: 0});
             })
     }
 
@@ -40,7 +40,6 @@ export function AddReview(props){
                         />
                     </Box>
                 </label>
-
                 <input type="submit" value="SUBMIT REVIEW"/>
             </form>
 

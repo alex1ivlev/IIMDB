@@ -15,10 +15,10 @@ import {Grid} from "@material-ui/core";
 
 const useStyles = makeStyles({
     root: {
-        maxWidth: 345,
+        maxWidth: 545,
     },
     media: {
-        height: 300,
+        height: 500,
     },
 });
 
@@ -45,7 +45,7 @@ export default function MoviesGallery() {
                 spacing={2}
                 direction="row"
                 justify-content="flex-start"
-                alignItems="flex-start">
+                alignItems="center">
 
                 {movies.map(({title, picture, description, id}) => (
                     <Grid item lg={6} key={id}>

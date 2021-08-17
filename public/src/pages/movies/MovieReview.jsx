@@ -6,7 +6,7 @@ import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import {Rating} from "@material-ui/lab";
 import CardContent from "@material-ui/core/CardContent";
-import {Redirect} from "react-router-dom";
+import {Redirect, useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
         root: {
@@ -29,6 +29,8 @@ export function MovieReview(props) {
     const [show, setShow] = useState(false);
     const [reviews, setReviews] = useState([]);
     const onClick = () => setShow(!show);
+    let history = useHistory();
+
     useEffect(() => {
         async function getReviews() {
             if (props.id !== undefined) {
@@ -44,41 +46,43 @@ export function MovieReview(props) {
 
     return (
 
-        <div key={props.id}  className={classes.root}>
-                <Paper className={classes.paper}>
-                    <Grid container spacing={2}>
-             <div>
-                Reviews: <ul>
-                    {reviews.map(({title, comment, rank, id}) => (
-                        <li key={id}>
-                            <Card className={classes.root}>
-                                <CardContent>
-                                    <Typography variant="h7" component="h3">
-                                        {title}
-                                    </Typography>
+        <div key={props.id} className={classes.root}>
+            <Paper className={classes.paper}>
+                <Grid container spacing={2}>
+                    <div>
+                        Reviews: <ul>
+                        {reviews.map(({title, comment, rank, id}) => (
+                            <li key={id}>
+                                <Card className={classes.root}>
+                                    <CardContent>
+                                        <Typography variant="h7" component="h3">
+                                            {title}
+                                        </Typography>
 
-                                    <Typography variant="body2" component="p">
-                                        {comment}
-                                    </Typography>
+                                        <Typography variant="body2" component="p">
+                                            {comment}
+                                        </Typography>
 
-                                    <Box component="fieldset" mb={3} borderColor="transparent">
-                                        <Rating name="read-only" value={rank} readOnly />
-                                    </Box>
-                                </CardContent>
-                            </Card>
-                        </li>
-                    ))}
-                </ul>
+                                        <Box component="fieldset" mb={3} borderColor="transparent">
+                                            <Rating name="read-only" value={rank} readOnly/>
+                                        </Box>
+                                    </CardContent>
+                                </Card>
+                            </li>
+                        ))}
+                    </ul>
 
-                    <Paper className={classes.paper}>
-                    { isLoggedIn()? <AddReview id={props.id}/>:
-                        <p> Please <Link to={`/login`}> Login </Link> to leave a review </p>
-                    }
-                    </Paper>
+                        <Paper className={classes.paper}>
+                            {isLoggedIn() ? <AddReview id={props.id}/> :
+                                <p> Please <Link onClick={() => {
+                                    history.push('/login')
+                                }}> Login </Link> to leave a review </p>
+                            }
+                        </Paper>
 
-            </div>
-                    </Grid>
-                </Paper>
+                    </div>
+                </Grid>
+            </Paper>
         </div>
 
     )

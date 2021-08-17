@@ -19,13 +19,14 @@ export default function Navbar() {
                     <Link to="#" className='menu-bars'>
                         <FaIcons.FaBars onClick={showSidebar}/>
                     </Link>
-                    <button onClick={() => {
+                    <button className= "nav-button" onClick={() => {
                         history.push('/login')
-                    }}> Login
+                    }}> <span>Login </span>
                     </button>
-                    <button onClick={() => {
+
+                    <button className= "nav-button" onClick={() => {
                         history.push('/register')
-                    }}> Sign Up
+                    }}> <span> Sign Up </span>
                     </button>
 
                 </div>
